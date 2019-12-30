@@ -24,3 +24,4 @@ def triplet_sum_close_to_target(arr, target_sum):
             else:
                 right -= 1
         return target_sum - difference
+
