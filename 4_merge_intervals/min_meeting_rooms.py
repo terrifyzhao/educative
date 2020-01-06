@@ -8,15 +8,23 @@ class Meeting:
 
 
 def min_meeting_rooms(meetings):
-    meetings.sort(lambda x: x.start)
+    # sort the meetings by start time
+    meetings.sort(key=lambda x: x.start)
 
-    count = len(meetings)
-    for i in range(len(meetings) - 1):
-        if meetings[i + 1].start < meetings[i].end:
-            count -= 1
-            i += 1
+    min_count = 0
+    rooms = []
 
-    return count
+    # 遍历meetings,只要是重复的，就加到堆中，不是重复的，就把原来堆里面的全部pop出来，最后统计下最大的堆的数据量
+    for meeting in meetings:
+
+        while len(rooms) > 0 and meeting.start >= rooms[0].end:
+            heappop(rooms)
+
+        heappush(rooms, meeting)
+        # 只需要找到最大的重叠部分，该部分实际上就是最少的房间数
+        min_count = max(len(rooms), min_count)
+
+    return min_count
 
 
 def main():
