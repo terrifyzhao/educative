@@ -2,11 +2,16 @@ def find_subsets(nums):
     subsets = []
 
     subsets.append([])
-    for num in nums:
-        n = len(subsets)
-        for i in range(n):
+    start, end = 0, 0
+    for j in range(len(nums)):
+
+        if j > 0 and nums[j] == nums[j - 1]:
+            start = end + 1
+        end = len(subsets) - 1
+
+        for i in range(start, end + 1):
             subset = list(subsets[i])
-            subset.append(num)
+            subset.append(nums[j])
             if subset not in subsets:
                 subsets.append(subset)
 
