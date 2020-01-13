@@ -7,7 +7,7 @@ def find_range(arr, key):
 
 
 def find(arr, key, find_start):
-    start, end = 0, len(arr)
+    start, end = 0, len(arr)-1
     key_index = -1
     while start <= end:
         mid = start + (end - start) // 2
