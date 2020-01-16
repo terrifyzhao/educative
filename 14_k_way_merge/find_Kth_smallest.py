@@ -1,48 +1,29 @@
-def find(matrix, mid):
-    row = len(matrix) - 1
-    col = 0
+from heapq import *
+
+
+def find_Kth_smallest(lists, k):
+    min_heap = []
+    for i in range(len(lists)):
+        heappush(min_heap, (lists[i][0], 0, lists[i]))
 
     count = 0
-    while row > 0 and col < len(matrix):
-        # 如果值小于mid，说明该列的值都比mid小，那么就有row+1个比mid小的数，并且应该把col+1
-        if matrix[row][col] < mid:
-            col += 1
-            count += row + 1
-        else:
-            row -= 1
+    num = 0
+    while min_heap:
+        num, i, l = heappop(min_heap)
+        count += 1
+        if count == k:
+            return num
 
-    return count
+        # 如果当前值的list中还有多余的值，就添加到堆中
+        if len(l) > i + 1:
+            heappush(min_heap, (l[i + 1], i + 1, l))
 
-
-def find_Kth_smallest(matrix, k):
-    start, end = matrix[0][0], matrix[-1][-1]
-
-    while start < end:
-        mid = start + (end - start) // 2
-        # 找到比mid小的数有几个
-        count = find(matrix, mid)
-
-        # count小于k说明第k个值在mid的右侧
-        if count < k:
-            start = mid + 1
-        else:
-            end = mid
-
-    return end
+    return num
 
 
 def main():
     print("Kth smallest number is: " +
-          str(find_Kth_smallest([[1, 4], [2, 5]], 2)))
-
-    print("Kth smallest number is: " +
-          str(find_Kth_smallest([[-5]], 1)))
-
-    print("Kth smallest number is: " +
-          str(find_Kth_smallest([[2, 6, 8], [3, 7, 10], [5, 8, 11]], 5)))
-
-    print("Kth smallest number is: " +
-          str(find_Kth_smallest([[1, 5, 9], [10, 11, 13], [12, 13, 15]], 8)))
+          str(find_Kth_smallest([[2, 6, 8], [3, 6, 7], [1, 3, 4]], 5)))
 
 
 main()
