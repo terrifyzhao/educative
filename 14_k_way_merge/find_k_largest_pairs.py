@@ -17,7 +17,7 @@ def find_k_largest_pairs(nums1, nums2, k):
                 else:
                     heappop(min_heap)
                     heappush(min_heap, (nums1[i] + nums2[j], i, j))
-                    
+
     # 最后堆里剩余的是最大的三个加和的值
     res = []
     while min_heap:
