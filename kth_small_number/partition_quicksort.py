@@ -1,9 +1,29 @@
 def find_Kth_smallest_number(nums, k):
-    return find_Kth_smallest_number_rec(nums, k)
+    return find_Kth_smallest_number_rec(nums, k, 0, len(nums) - 1)
 
 
-def find_Kth_smallest_number_rec(nums, k):
+def find_Kth_smallest_number_rec(nums, k, start, end):
+    p = partition(nums, start, end)
 
+    if p == k - 1:
+        return nums[p]
+    if p > k - 1:
+        return find_Kth_smallest_number_rec(nums, k, start, p - 1)
+    return find_Kth_smallest_number_rec(nums, k, p + 1, end)
+
+
+def partition(nums, left, right):
+    pivot = nums[left]
+
+    while left != right:
+        while left < right and nums[right] >= pivot:
+            right -= 1
+        nums[left] = nums[right]
+        while left < right and nums[left] < pivot:
+            left += 1
+        nums[right] = nums[left]
+    nums[left] = pivot
+    return left
 
 
 def main():
