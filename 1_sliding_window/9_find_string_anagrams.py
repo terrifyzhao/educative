@@ -1,3 +1,6 @@
+# 给定一个字符串，返回patter的排列组合的开始下标
+
+
 def find_string_anagrams(str, pattern):
     result_indexes = []
     dic = {}
@@ -25,3 +28,11 @@ def find_string_anagrams(str, pattern):
                 dic[left_char] += 1
 
     return result_indexes
+
+
+def main():
+    print(find_string_anagrams("ppqp", "pq"))
+    print(find_string_anagrams("abbcabc", "abc"))
+
+
+main()

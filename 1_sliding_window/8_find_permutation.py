@@ -1,3 +1,5 @@
+# 给定一个字符串，是否包含patter的排列组合
+
 def find_permutation2(str, pattern):
     start = 0
     dic = {}
