@@ -1,3 +1,5 @@
+# 给定一个数组，找到一个长度为k的连续的子数组和最大
+
 def max_sub_array_of_size_k(k, arr):
     if not arr:
         return None

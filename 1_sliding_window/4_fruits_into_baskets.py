@@ -1,3 +1,5 @@
+# 两个篮子，只能选两种水果，怎么选最多数量的水果
+
 def fruits_into_baskets(fruits):
     dic = {}
     start = 0

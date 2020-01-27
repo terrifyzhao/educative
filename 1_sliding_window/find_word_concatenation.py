@@ -34,7 +34,7 @@ def find_word_concatenation(str, words):
             if j + 1 == words_count:  # Store index if we have found all the words
                 result_indices.append(i)
 
-    return result_indicespair_with_targetsum
+    return result_indices
 
 
 def main():

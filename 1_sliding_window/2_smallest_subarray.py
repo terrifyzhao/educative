@@ -1,6 +1,8 @@
 import math
 
 
+# 给定一个数组，找到一个最小的和大于等于s的子数组的长度
+
 def smallest_subarray_with_given_sum(s, arr):
     length = math.inf
     sum_num = 0

@@ -1,6 +1,8 @@
 import math
 
 
+# 给定一个字符串，找到一个包含K个不重复的字符的最长子串
+
 def longest_substring_with_k_distinct(str, k):
     start = 0
     length = 0

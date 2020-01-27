@@ -1,7 +1,6 @@
 def quick(nums, start, end):
     left, right = start, end
-    if start < end:
-
+    if left < right:
         pivot = nums[left]
         while left != right:
             while left < right and nums[right] >= pivot:
@@ -12,11 +11,11 @@ def quick(nums, start, end):
             nums[right] = nums[left]
         nums[left] = pivot
         quick(nums, start, left - 1)
-        quick(nums, right + 1, end)
+        quick(nums, left + 1, end)
 
 
 if __name__ == '__main__':
-    nums = [23, 4, 1, 523, 2, 3, 111]
+    nums = [23, 4, 1, 523, 2, 3,3, 111]
     quick(nums, 0, len(nums) - 1)
     # res = quick(nums, 5)
     print(nums)
