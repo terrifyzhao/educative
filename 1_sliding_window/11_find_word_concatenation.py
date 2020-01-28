@@ -1,3 +1,6 @@
+# 给定一个字符串，找到words中所有词连在一起在字符串中的开始下标，words中所有的词长度一样
+
+
 def find_word_concatenation(str, words):
     if len(words) == 0 or len(words[0]) == 0:
         return []
@@ -13,8 +16,11 @@ def find_word_concatenation(str, words):
     words_count = len(words)
     word_length = len(words[0])
 
+    # 2*3+2   8-6+1=3 【0 1 2】 ab ccc ccc 2,5
+    # 遍历非words的下标
     for i in range((len(str) - words_count * word_length) + 1):
         words_seen = {}
+        # 遍历词的个数
         for j in range(0, words_count):
             next_word_index = i + j * word_length
             # Get the next word from the string
@@ -37,9 +43,44 @@ def find_word_concatenation(str, words):
     return result_indices
 
 
+def find_word_concatenation2(str, words):
+    word_dic = {}
+    for word in words:
+        word_dic[word] = word_dic.get(word, 0) + 1
+
+    word_count = len(words)
+    word_length = len(words[0])
+
+    res = []
+
+    # 循环的过程中用break来中断，如果没有break说明是匹配上了
+    for i in range(len(str) - word_count * word_length + 1):
+        seen_dic = {}
+        for j in range(word_count):
+            word_index = i + j * word_length
+
+            word = str[word_index:word_index + word_length]
+
+            if word not in words:
+                break
+
+            seen_dic[word] = seen_dic.get(word, 0) + 1
+
+            if seen_dic[word] > word_dic[word]:
+                break
+
+            if j + 1 == word_count:
+                res.append(i)
+
+    return res
+
+
 def main():
     print(find_word_concatenation("catfoxcat", ["cat", "fox"]))
     print(find_word_concatenation("catcatfoxfox", ["cat", "fox"]))
+
+    print(find_word_concatenation2("catfoxcat", ["cat", "fox"]))
+    print(find_word_concatenation2("catcatfoxfox", ["cat", "fox"]))
 
 
 main()
