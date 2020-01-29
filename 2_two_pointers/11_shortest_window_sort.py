@@ -1,4 +1,7 @@
 # 给定一个数组，找到需要排序改变的最小序列长度
+# tip:
+# 从头找到小于前一个数的start，从后找到大于后一个数的end，从start：end中找到最大最小值，再扩大窗口，确保
+# 所有的数都比最小值小，比最大值大
 
 def shortest_window_sort(arr):
     low, high = 0, len(arr) - 1

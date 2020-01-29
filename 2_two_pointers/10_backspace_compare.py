@@ -1,4 +1,7 @@
 # 给定两个字符串，其中#表示删除符号，检测两个字符串是否相等
+# tip:
+# 同时遍历两个str,注意从后往前遍历，找到当前是#下一次是字母的index，如果index都是小于0则返回true，如果有一个不小于0
+# 或者对应位置的字符不同则返回false
 
 def backspace_compare(str1, str2):
     index1 = len(str1) - 1
