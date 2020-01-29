@@ -1,3 +1,5 @@
+# 环长
+
 class Node:
     def __init__(self, value, next=None):
         self.value = value
@@ -24,6 +26,24 @@ def calculate_cycle_length(slow):
         if cur == slow:
             break
     return length
+
+
+def find_cycle_length2(head):
+    slow, fast = head, head
+
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+        if slow == fast:
+            cur = slow
+            length = 0
+            while 1:
+                cur = cur.next
+                length += 1
+                if cur == slow:
+                    return length
+
+    return 0
 
 
 def main():

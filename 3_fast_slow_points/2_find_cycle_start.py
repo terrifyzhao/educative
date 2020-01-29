@@ -1,6 +1,9 @@
 from __future__ import print_function
 
 
+# 环的开始节点
+
+
 class Node:
     def __init__(self, value, next=None):
         self.value = value
@@ -51,6 +54,35 @@ def find_node(head, length):
     return node1
 
 
+def find_cycle_start2(head):
+    slow, fast = head, head
+    length = 0
+
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+        if slow == fast:
+            cur = slow
+
+            while 1:
+                cur = cur.next
+                length += 1
+                if cur == slow:
+                    break
+            break
+
+    slow, fast = head, head
+    while length:
+        fast = fast.next
+        length -= 1
+
+    while slow != fast:
+        slow = slow.next
+        fast = fast.next
+
+    return slow
+
+
 def main():
     head = Node(1)
     head.next = Node(2)
@@ -60,13 +92,13 @@ def main():
     head.next.next.next.next.next = Node(6)
 
     head.next.next.next.next.next.next = head.next.next
-    print("LinkedList cycle start: " + str(find_cycle_start(head).value))
+    print("LinkedList cycle start: " + str(find_cycle_start2(head).value))
 
     head.next.next.next.next.next.next = head.next.next.next
-    print("LinkedList cycle start: " + str(find_cycle_start(head).value))
+    print("LinkedList cycle start: " + str(find_cycle_start2(head).value))
 
     head.next.next.next.next.next.next = head
-    print("LinkedList cycle start: " + str(find_cycle_start(head).value))
+    print("LinkedList cycle start: " + str(find_cycle_start2(head).value))
 
 
 main()

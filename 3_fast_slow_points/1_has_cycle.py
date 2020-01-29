@@ -1,3 +1,5 @@
+# 是否有环
+
 class Node:
     def __init__(self, value, next=None):
         self.value = value
