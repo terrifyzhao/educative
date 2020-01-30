@@ -1,3 +1,5 @@
+# 是否是回文链
+
 class Node:
     def __init__(self, value, next=None):
         self.value = value
@@ -36,6 +38,29 @@ def reverse(head):
     return pre
 
 
+def is_palindromic_linked_list2(head):
+    slow, fast = head, head
+
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+
+    half1 = head
+    half2 = reverse(slow)
+    copy_half2 = half2
+    while half1 and half2:
+
+        if half1.value != half2.value:
+            reverse(copy_half2)
+            return False
+        else:
+            half1 = half1.next
+            half2 = half2.next
+
+    reverse(copy_half2)
+    return True
+
+
 def main():
     head = Node(2)
     head.next = Node(4)
@@ -43,10 +68,10 @@ def main():
     head.next.next.next = Node(4)
     head.next.next.next.next = Node(2)
 
-    print("Is palindrome: " + str(is_palindromic_linked_list(head)))
+    print("Is palindrome: " + str(is_palindromic_linked_list2(head)))
 
     head.next.next.next.next.next = Node(2)
-    print("Is palindrome: " + str(is_palindromic_linked_list(head)))
+    print("Is palindrome: " + str(is_palindromic_linked_list2(head)))
 
 
 main()

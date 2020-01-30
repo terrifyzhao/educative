@@ -6,3 +6,18 @@
 新的指针B从head遍历，直到A遇到B就是还开始节点
 
 happy number:也是一个环，用快慢指针
+
+链表反转：
+```python
+pre = None
+while head:
+    next = head.next
+    head.next = pre
+    pre = head
+    head = next
+    
+```
+
+
+只要是判断是否有环的问题，都可以考虑采用快慢指针，只是在链表中是next，而其他场景
+可能是找到下一个下标
