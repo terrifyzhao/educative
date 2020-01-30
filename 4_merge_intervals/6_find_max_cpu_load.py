@@ -30,6 +30,21 @@ def find_max_cpu_load(jobs):
     return max_load
 
 
+def find_max_cpu_load(jobs):
+    jobs.sort(key=lambda x: x.start)
+    cur_load, max_load = 0, 0
+    cpu = []
+    for j in jobs:
+        while len(cpu) > 0 and j.start >= cpu[0].end:
+            cur_load -= cpu[0].cpu_load
+            heappop(cpu)
+
+        heappush(cpu, j)
+        cur_load += j.cpu_load
+        max_load = max(max_load, cur_load)
+    return max_load
+
+
 def main():
     print("Maximum CPU load at any time: " + str(find_max_cpu_load([job(1, 4, 3), job(2, 5, 4), job(7, 9, 6)])))
     print("Maximum CPU load at any time: " + str(find_max_cpu_load([job(6, 7, 10), job(2, 4, 11), job(8, 12, 15)])))

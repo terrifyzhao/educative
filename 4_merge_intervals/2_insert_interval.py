@@ -1,3 +1,6 @@
+# 排好序的intervals,插入一个新的
+
+
 def insert(intervals, new_interval):
     merged = []
     i = 0
@@ -18,6 +21,29 @@ def insert(intervals, new_interval):
         i += 1
 
     return merged
+
+
+def insert2(intervals, new_interval):
+    merge = []
+    i = 0
+    start, end = 0, 1
+    while i < len(intervals) and intervals[i][end] < new_interval[start]:
+        merge.append(intervals[i])
+        i += 1
+
+    while i < len(intervals) and intervals[i][start] <= new_interval[end]:
+        new_interval[start] = min(intervals[i][start], new_interval[start])
+        new_interval[end] = max(intervals[i][end], new_interval[end])
+        # 这里只需要i自增，先不添加到merge中，因为可能还有其他interval需要合并
+        i += 1
+
+    merge.append(new_interval)
+
+    while i < len(intervals):
+        merge.append(intervals[i])
+        i += 1
+
+    return merge
 
 
 def main():

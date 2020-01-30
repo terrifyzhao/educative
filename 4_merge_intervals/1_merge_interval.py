@@ -1,6 +1,6 @@
 from __future__ import print_function
 
-
+# 合并interval
 class Interval:
     def __init__(self, start, end):
         self.start = start
@@ -29,6 +29,29 @@ def merge(intervals):
             end = interval.end
 
     # 没合并一次，只有判断不能合并了，才会把合并了的添加到merge，这个时候新的还没有添加进去，所以这里要再添加一遍
+    merge.append(Interval(start, end))
+
+    return merge
+
+
+def merge2(intervals):
+    if len(intervals) < 2:
+        return intervals
+
+    intervals.sort(key=lambda x: x.start)
+
+    merge = []
+
+    start = intervals[0].start
+    end = intervals[0].end
+
+    for interval in intervals[1:]:
+        if interval.start <= end:
+            end = max(end, interval.end)
+        else:
+            merge.append(Interval(start, end))
+            start = interval.start
+            end = interval.end
     merge.append(Interval(start, end))
 
     return merge

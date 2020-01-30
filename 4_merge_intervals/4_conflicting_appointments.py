@@ -1,7 +1,9 @@
+# 判断是否intervals有重叠
+
 def can_attend_all_appointments(intervals):
     intervals.sort(key=lambda x: x[0])
     start, end = 0, 1
-    for i in range(len(intervals)-1):
+    for i in range(len(intervals) - 1):
         if intervals[i][end] > intervals[i + 1][start]:
             return False
 
