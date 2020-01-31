@@ -1,6 +1,7 @@
 from __future__ import print_function
 
 
+# 每k个节点反转一次
 class Node:
     def __init__(self, value, next=None):
         self.value = value
@@ -42,6 +43,35 @@ def reverse_every_k_elements(head, k):
             break
         # 反转之后要把pre设置为原reverse的第一个节点
         pre = revese_list_first_node
+
+    return head
+
+
+def reverse_every_k_elements2(head, k):
+    if k <= 1 or head is None:
+        return head
+
+    cur, pre = head, None
+
+    while cur:
+        i = 0
+        first_part_last_node = pre
+        reverse_part_first_node = cur
+        while cur and i < k:
+            next = cur.next
+            cur.next = pre
+            pre = cur
+            cur = next
+            i += 1
+
+        if first_part_last_node:
+            first_part_last_node.next = pre
+        else:
+            head = pre
+
+        reverse_part_first_node.next = cur
+
+        pre = reverse_part_first_node
 
     return head
 

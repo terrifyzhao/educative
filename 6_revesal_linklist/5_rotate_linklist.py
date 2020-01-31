@@ -1,3 +1,5 @@
+# 旋转链表
+
 class Node:
     def __init__(self, value, next=None):
         self.value = value
@@ -48,7 +50,7 @@ def rotate2(head, rotations):
 
     i = 0
     cur = head
-    while i < rotations-1:
+    while i < rotations - 1:
         cur = cur.next
         i += 1
     head = cur.next

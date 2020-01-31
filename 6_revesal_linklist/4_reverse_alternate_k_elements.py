@@ -1,6 +1,7 @@
 from __future__ import print_function
 
 
+# 每k个节点反转一次,然后跳过k个节点
 class Node:
     def __init__(self, value, next=None):
         self.value = value
@@ -21,7 +22,7 @@ def reverse_alternate_k_elements(head, k):
     cur = head
     pre = None
 
-    while 1:
+    while cur:
         first_part_last_node = pre
         sub_part_first_node = cur
         i = 0
@@ -39,38 +40,14 @@ def reverse_alternate_k_elements(head, k):
 
         sub_part_first_node.next = cur
 
-        if cur is None:
-            break
         # head改变了，那么pre也要改
         pre = sub_part_first_node
-    return head
 
-
-def reverse_alternate_k_elements2(head, k):
-    if k <= 1 or head is None:
-        return head
-
-    cur, pre = head, None
-
-    while cur:
         i = 0
-        first_part_last_node = pre
-        reverse_part_first_node = cur
         while cur and i < k:
-            next = cur.next
-            cur.next = pre
-            pre = cur
-            cur = next
+            cur = cur.next
+            pre = pre.next
             i += 1
-
-        if first_part_last_node:
-            first_part_last_node.next = pre
-        else:
-            head = pre
-
-        reverse_part_first_node.next = cur
-
-        pre = reverse_part_first_node
 
     return head
 
@@ -87,7 +64,7 @@ def main():
 
     print("Nodes of original LinkedList are: ", end='')
     head.print_list()
-    result = reverse_alternate_k_elements(head, 3)
+    result = reverse_alternate_k_elements(head, 2)
     print("Nodes of reversed LinkedList are: ", end='')
     result.print_list()
 
