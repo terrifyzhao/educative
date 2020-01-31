@@ -1,3 +1,5 @@
+# 数组的数包含0-n，找到缺失的
+
 def find_missing_number(nums):
     i = 0
     n = len(nums)
@@ -16,6 +18,22 @@ def find_missing_number(nums):
             return i
 
     return n
+
+
+def find_missing_number2(nums):
+    i = 0
+
+    while i < len(nums):
+        j = nums[i]
+        # 注意处理最大的数
+        if nums[i] != i and j != len(nums):
+            nums[i], nums[j] = nums[j], nums[i]
+        else:
+            i += 1
+
+    for i, n in enumerate(nums):
+        if n != i:
+            return i
 
 
 def main():
