@@ -15,14 +15,14 @@ class Node:
 
 
 def reverse_alternate_k_elements(head, k):
-    if k == 0 or not head:
+    if k <= 1 or head is None:
         return head
 
     cur = head
     pre = None
 
     while 1:
-        fisrt_part_last_node = pre
+        first_part_last_node = pre
         sub_part_first_node = cur
         i = 0
         while i < k and cur:
@@ -32,22 +32,45 @@ def reverse_alternate_k_elements(head, k):
             cur = next
             i += 1
 
-        if fisrt_part_last_node:
-            fisrt_part_last_node.next = pre
+        if first_part_last_node:
+            first_part_last_node.next = pre
         else:
             head = pre
 
         sub_part_first_node.next = cur
 
-        pre = sub_part_first_node
-
-        i = 0
-        while i < k and cur:
-            pre = cur
-            cur = cur.next
-            i += 1
-        if not cur:
+        if cur is None:
             break
+        # head改变了，那么pre也要改
+        pre = sub_part_first_node
+    return head
+
+
+def reverse_alternate_k_elements2(head, k):
+    if k <= 1 or head is None:
+        return head
+
+    cur, pre = head, None
+
+    while cur:
+        i = 0
+        first_part_last_node = pre
+        reverse_part_first_node = cur
+        while cur and i < k:
+            next = cur.next
+            cur.next = pre
+            pre = cur
+            cur = next
+            i += 1
+
+        if first_part_last_node:
+            first_part_last_node.next = pre
+        else:
+            head = pre
+
+        reverse_part_first_node.next = cur
+
+        pre = reverse_part_first_node
 
     return head
 
@@ -64,7 +87,7 @@ def main():
 
     print("Nodes of original LinkedList are: ", end='')
     head.print_list()
-    result = reverse_alternate_k_elements(head, 2)
+    result = reverse_alternate_k_elements(head, 3)
     print("Nodes of reversed LinkedList are: ", end='')
     result.print_list()
 

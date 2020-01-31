@@ -1,6 +1,7 @@
 from __future__ import print_function
 
 
+# 反转p与q之间的链表
 class Node:
     def __init__(self, value, next=None):
         self.value = value
@@ -21,7 +22,6 @@ def reverse_sub_list(head, p, q):
     cur, pre = head, None
 
     i = 0
-
     while cur and i < p - 1:
         pre = cur
         cur = cur.next
@@ -44,6 +44,39 @@ def reverse_sub_list(head, p, q):
         head = pre
 
     reverse_part_first_node.next = cur
+
+    return head
+
+
+def reverse_sub_list2(head, p, q):
+    if p == q:
+        return head
+
+    cur, pre = head, None
+
+    i = 0
+    while cur and i < p - 1:
+        pre = cur
+        cur = cur.next
+        i += 1
+
+    first_part_last_node = pre
+    reverse_part_last_node = cur
+
+    i = 0
+    while cur and i < q - p + 1:
+        next = cur.next
+        cur.next = pre
+        pre = cur
+        cur = next
+        i += 1
+
+    if first_part_last_node:
+        first_part_last_node.next = pre
+    else:
+        head = pre
+
+    reverse_part_last_node.next = cur
 
     return head
 

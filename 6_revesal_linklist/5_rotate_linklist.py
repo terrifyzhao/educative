@@ -1,6 +1,3 @@
-from __future__ import print_function
-
-
 class Node:
     def __init__(self, value, next=None):
         self.value = value
@@ -37,6 +34,29 @@ def rotate(head, rotations):
     return head
 
 
+def rotate2(head, rotations):
+    length = 1
+
+    cur = head
+    while cur.next:
+        cur = cur.next
+        length += 1
+
+    cur.next = head
+    rotations = rotations % length
+    rotations = length - rotations
+
+    i = 0
+    cur = head
+    while i < rotations-1:
+        cur = cur.next
+        i += 1
+    head = cur.next
+    cur.next = None
+
+    return head
+
+
 def main():
     head = Node(1)
     head.next = Node(2)
@@ -44,11 +64,10 @@ def main():
     head.next.next.next = Node(4)
     head.next.next.next.next = Node(5)
     head.next.next.next.next.next = Node(6)
-    head.next.next.next.next.next.next = Node(7)
 
     print("Nodes of original LinkedList are: ", end='')
     head.print_list()
-    result = rotate(head, 8)
+    result = rotate(head, 3)
     print("Nodes of rotated LinkedList are: ", end='')
     result.print_list()
 

@@ -1,6 +1,6 @@
 from __future__ import print_function
 
-
+# 反转链表
 class Node:
     def __init__(self, value, next=None):
         self.value = value
@@ -27,6 +27,18 @@ def reverse(head):
         head = next
 
     return pre
+
+
+def reverse2(head):
+    if not head or not head.next:
+        return None
+    pre = None
+    while head:
+        next = head.next
+        head.next = pre
+        pre = head
+        head = next
+    return head
 
 
 def main():
