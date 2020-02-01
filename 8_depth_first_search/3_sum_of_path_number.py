@@ -1,3 +1,5 @@
+# 所有路径的和，其中和的计算方法是：前一个节点的和*10+当前节点值
+
 class TreeNode:
     def __init__(self, val, left=None, right=None):
         self.val = val
@@ -19,6 +21,21 @@ def find_num(root, sum_num):
 
 def find_sum_of_path_numbers(root):
     return find_num(root, 0)
+
+
+def find_sum_of_path_numbers(root):
+    return f(root, 0)
+
+
+def f(root, res):
+    if not root:
+        return 0
+
+    res = root.val + res * 10
+
+    if not root.left and not root.right:
+        return res
+    return f(root.left, res) + f(root.right, res)
 
 
 def main():

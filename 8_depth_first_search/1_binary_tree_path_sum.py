@@ -1,3 +1,6 @@
+
+# 判断从根到叶子节点的路径和是否等于sum
+
 class TreeNode:
     def __init__(self, val, left=None, right=None):
         self.val = val
@@ -13,6 +16,18 @@ def has_path(root, sum):
         return True
 
     return has_path(root.left, sum - root.val) or has_path(root.right, sum - root.val)
+
+
+def has_path(root, sum):
+    if not root:
+        return False
+
+    if root.val == sum and root.left is None and root.right is None:
+        return True
+    return has_path(root.left, sum - root.val) or has_path(root.right, sum - root.val)
+
+
+
 
 
 def main():

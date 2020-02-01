@@ -1,3 +1,5 @@
+# 判断给定的序列是否是树的某个从root到leaf的路径
+
 class TreeNode:
     def __init__(self, val, left=None, right=None):
         self.val = val
@@ -13,6 +15,18 @@ def find_path(root, sequence):
         return True
     if root.val != sequence[0]:
         return False
+
+    return find_path(root.left, sequence[1:]) or find_path(root.right, sequence[1:])
+
+
+def find_path(root, sequence):
+    if not root:
+        return False
+
+    if root.val != sequence[0]:
+        return False
+    if root.val == sequence[0] and not root.left and not root.right:
+        return True
 
     return find_path(root.left, sequence[1:]) or find_path(root.right, sequence[1:])
 

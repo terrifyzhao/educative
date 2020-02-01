@@ -26,6 +26,18 @@ class MaxPath:
 
         return max(left_sum, right_sum) + root.val
 
+    def find(self, root):
+        if not root:
+            return 0
+
+        left_sum = max(self.find(root.left), 0)
+        right_sum = max(self.find(root.right), 0)
+        all_sum = left_sum + right_sum + root.val
+
+        self.max_sum = max(self.max_sum, all_sum)
+
+        return max(left_sum, right_sum) + root.val
+
 
 def main():
     root = TreeNode(1)

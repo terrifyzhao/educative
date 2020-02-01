@@ -1,3 +1,5 @@
+# 找到所有从根到叶子节点的路径，其和等于sum
+
 class TreeNode:
     def __init__(self, val, left=None, right=None):
         self.val = val
@@ -24,6 +26,25 @@ def find(root, cur_path, all_path, sum):
         find(root.right, cur_path, all_path, sum - root.val)
     # 遍历完了要回溯
     del cur_path[-1]
+
+
+def find_paths(root, sum):
+    all = []
+    f(root, sum, [], all)
+    return all
+
+
+def f(root, sum, cur, all):
+    if not root:
+        return
+    cur.append(root.val)
+    if root.val == sum and root.left is None and root.right is None:
+        all.append(list(cur))
+    else:
+        f(root.left, sum - root.val, cur, all)
+        f(root.right, sum - root.val, cur, all)
+
+    del cur[-1]
 
 
 def main():

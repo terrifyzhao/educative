@@ -1,3 +1,6 @@
+# 找到树的最大直径，树的直径指的是从一个leaf到另一个leaf的最大长度，可以不经过root
+
+
 class TreeNode:
     def __init__(self, val, left=None, right=None):
         self.val = val
@@ -25,7 +28,17 @@ class TreeDiameter:
         dia = left_depth + right_depth + 1
         self.treeDiameter = max(self.treeDiameter, dia)
 
-        return max(left_depth, right_depth)+1
+        return max(left_depth, right_depth) + 1
+
+    def depth2(self, root):
+        if not root:
+            return 0
+
+        left_depth = self.depth(root.left)
+        right_depth = self.depth(root.right)
+        diameter = left_depth + right_depth + 1
+        self.treeDiameter = max(self.treeDiameter, diameter)
+        return max(left_depth, right_depth) + 1
 
 
 def main():
