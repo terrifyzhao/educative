@@ -16,7 +16,7 @@ def find_successor(root, key):
 
     while queue:
         cur_node = queue.popleft()
-
+        # 这里不需要循环queue的size个数，因为不需要统计每层有几个元素
         if cur_node.left:
             queue.append(cur_node.left)
         if cur_node.right:
@@ -25,6 +25,25 @@ def find_successor(root, key):
         if key == cur_node.val:
             break
 
+    return queue[0] if queue else None
+
+
+def find_successor2(root, key):
+    if not root or key is None:
+        return root
+
+    queue = deque()
+    queue.append(root)
+
+    while queue:
+        node = queue.popleft()
+        if node.left:
+            queue.append(node.left)
+        if node.right:
+            queue.append(node.right)
+
+        if node.val == key:
+            break
     return queue[0] if queue else None
 
 

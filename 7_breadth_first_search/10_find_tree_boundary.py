@@ -57,6 +57,53 @@ def dfs(root):
     return res
 
 
+def find_tree_boundary(root):
+    result = []
+
+    if not root:
+        return result
+
+    queue = deque()
+    queue.append(root)
+
+    left_view = []
+    right_view = deque()
+    # leaf_view = []
+
+    while queue:
+        len_queue = len(queue)
+
+        for i in range(len_queue):
+            node = queue.popleft()
+            if node.left is None and node.right is None:
+                continue
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+
+            if i == 0:
+                left_view.append(node)
+            elif i == len_queue - 1:
+                right_view.appendleft(node)
+
+    return left_view + dfs(root) + list(right_view)
+
+
+def dfs(root):
+    queue = deque()
+    queue.append(root)
+    res = []
+    while queue:
+        node = queue.pop()
+        if node.left is None and node.right is None:
+            res.append(node)
+        if node.right:
+            queue.append(node.right)
+        if node.left:
+            queue.append(node.left)
+    return res
+
 def main():
     root = TreeNode(12)
     root.left = TreeNode(7)

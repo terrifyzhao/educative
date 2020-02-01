@@ -1,6 +1,8 @@
 from collections import deque
 
 
+# 锯齿广度遍历
+
 class TreeNode:
     def __init__(self, val):
         self.val = val
@@ -33,6 +35,36 @@ def traverse(root):
         result.append(list(cur_level))
 
     return result
+
+
+def traverse(root):
+    res = []
+    if root is None:
+        return res
+
+    queue = deque()
+    queue.append(root)
+    i = 0
+    while queue:
+        queue_size = len(queue)
+        level = deque()
+        for _ in range(queue_size):
+            node = queue.popleft()
+
+            if i & 1 == 0:
+                level.append(node.val)
+            else:
+                level.appendleft(node.val)
+
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+
+        i += 1
+        res.append(list(level))
+
+    return res
 
 
 def main():

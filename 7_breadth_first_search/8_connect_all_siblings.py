@@ -38,6 +38,28 @@ def connect_all_siblings(root):
     return
 
 
+def connect_all_siblings(root):
+    res = []
+    if root is None:
+        return res
+
+    queue = deque()
+    queue.append(root)
+    pre_node = None
+    while queue:
+        node = queue.popleft()
+        if pre_node:
+            pre_node.next = node
+        pre_node = node
+
+        if node.left:
+            queue.append(node.left)
+        if node.right:
+            queue.append(node.right)
+
+    return
+
+
 def main():
     root = TreeNode(12)
     root.left = TreeNode(7)

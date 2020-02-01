@@ -48,6 +48,29 @@ def connect_level_order_siblings(root):
                 queue.append(cur_node.right)
 
 
+def connect_level_order_siblings(root):
+    if not root:
+        return root
+
+    queue = deque()
+    queue.appendleft(root)
+
+    while queue:
+        queue_size = len(queue)
+        pre = None
+        for _ in range(queue_size):
+            cur = queue.popleft()
+
+            if pre:
+                pre.next = cur
+            pre = cur
+
+            if cur.left:
+                queue.append(cur.left)
+            if cur.right:
+                queue.append(cur.right)
+
+
 def main():
     root = TreeNode(12)
     root.left = TreeNode(7)

@@ -1,15 +1,15 @@
 from collections import deque
 
 
+# 从下往上广度遍历
 class TreeNode:
     def __init__(self, val):
         self.val = val
         self.left, self.right = None, None
 
 
-def find_level_averages(root):
-    result = []
-
+def traverse(root):
+    result = deque()
     if not root:
         return result
 
@@ -18,18 +18,17 @@ def find_level_averages(root):
 
     while queue:
         len_queue = len(queue)
-        cur_sum = 0
+        cur_level = []
 
         for _ in range(len_queue):
             cur_node = queue.popleft()
-            cur_sum += cur_node.val
+            cur_level.append(cur_node.val)
 
             if cur_node.left:
                 queue.append(cur_node.left)
             if cur_node.right:
                 queue.append(cur_node.right)
-
-        result.append(cur_sum / len_queue)
+        result.appendleft(cur_level)
 
     return result
 
@@ -39,10 +38,9 @@ def main():
     root.left = TreeNode(7)
     root.right = TreeNode(1)
     root.left.left = TreeNode(9)
-    root.left.right = TreeNode(2)
     root.right.left = TreeNode(10)
     root.right.right = TreeNode(5)
-    print("Level averages are: " + str(find_level_averages(root)))
+    print("Level order traversal: " + str(traverse(root)))
 
 
 main()
