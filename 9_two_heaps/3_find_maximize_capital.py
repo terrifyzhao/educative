@@ -1,6 +1,8 @@
 from heapq import *
 
 
+# 找到最大的收益，initialCapital是初始资金，numberOfProjects是可投资项目
+
 def find_maximum_capital(capital, profits, numberOfProjects, initialCapital):
     av_capital = initialCapital
     min_capital_heap = []
@@ -21,6 +23,26 @@ def find_maximum_capital(capital, profits, numberOfProjects, initialCapital):
         av_capital += -heappop(max_profit_heap)[0]
 
     return av_capital
+
+
+def find_maximum_capital(capital, profits, numberOfProjects, initialCapital):
+    min_heap = []
+    max_heap = []
+
+    for i, c in enumerate(capital):
+        heappush(min_heap, (c, i))
+
+    available_capital = initialCapital
+    for _ in range(numberOfProjects):
+        while min_heap and min_heap[0][0] <= available_capital:
+            _, i = heappop(min_heap)
+            heappush(max_heap, (-profits[i], i))
+
+        if not max_heap:
+            break
+
+        available_capital += -heappop(max_heap)[0]
+    return available_capital
 
 
 def main():
