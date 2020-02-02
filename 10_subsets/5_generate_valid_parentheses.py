@@ -26,6 +26,23 @@ def generate_valid_parentheses(num):
     return result
 
 
+def generate_valid_parentheses(num):
+    res = []
+    combinations = deque()
+    combinations.append(ParenthesesString('', 0, 0))
+
+    while combinations:
+        ps = combinations.popleft()
+        if ps.openCount == num and ps.closeCount == num:
+            res.append(ps.str)
+        else:
+            if ps.openCount < num:
+                combinations.append(ParenthesesString(ps.str + '(', ps.openCount + 1, ps.closeCount))
+            if ps.openCount > ps.closeCount:
+                combinations.append(ParenthesesString(ps.str + ')', ps.openCount, ps.closeCount + 1))
+    return res
+
+
 def main():
     print("All combinations of balanced parentheses are: " +
           str(generate_valid_parentheses(2)))

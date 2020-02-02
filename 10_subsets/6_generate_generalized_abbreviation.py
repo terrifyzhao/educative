@@ -31,11 +31,38 @@ def generate_generalized_abbreviation(word):
             if ab_word.count != 0:
                 ab_word.str.append(str(ab_word.count))
 
-            # 添加新字符
+            # 添加新字符，因为上面已经把count改成缩写了，所以count的值为0
             new_word = list(ab_word.str)
             new_word.append(word[ab_word.start])
             queue.append(AbbreviatedWord(new_word, ab_word.start + 1, 0))
     return result
+
+
+def generate_generalized_abbreviation(word):
+    res = []
+    queue = deque()
+    queue.append(AbbreviatedWord([], 0, 0))
+
+    while queue:
+        ab = queue.popleft()
+
+        if ab.start == len(word):
+            if ab.count > 0:
+                ab.str.append(str(ab.count))
+
+            res.append(''.join(ab.str))
+
+        else:
+            queue.append(AbbreviatedWord(list(ab.str), ab.start + 1, ab.count + 1))
+
+            if ab.count > 0:
+                ab.str.append(str(ab.count))
+
+            new_str = list(ab.str)
+            new_str.append(word[ab.start])
+            queue.append(AbbreviatedWord(new_str, ab.start + 1, 0))
+
+    return res
 
 
 def main():
