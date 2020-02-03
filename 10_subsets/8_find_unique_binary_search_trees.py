@@ -1,4 +1,4 @@
-# 给定一个数字，返回所有的二叉搜索树的数量
+# 给定一个数字，返回所有的二叉搜索树
 
 
 class TreeNode:
@@ -37,24 +37,23 @@ def find_unique_trees_r(start, end):
 
 
 def find_unique_trees_r(start, end):
-    result = []
-
+    res = []
     if start > end:
-        result.append(None)
-        return result
+        res.append(None)
+        return res
 
-    for i in range(start, end + 1):
-        left = find_unique_trees_r(start, i - 1)
-        right = find_unique_trees_r(i + 1, end)
+    for i in range(start, end+1):
+        left = find_unique_trees_r(start, i-1)
+        right = find_unique_trees_r(i+1, end)
 
         for l in left:
             for r in right:
                 root = TreeNode(i)
                 root.left = l
                 root.right = r
-                result.append(root)
+                res.append(root)
 
-    return result
+    return res
 
 
 def main():
