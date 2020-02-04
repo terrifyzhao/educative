@@ -1,3 +1,5 @@
+# 找到和key相差最小的数
+
 def search_min_diff_element(arr, key):
     if key < arr[0]:
         return arr[0]

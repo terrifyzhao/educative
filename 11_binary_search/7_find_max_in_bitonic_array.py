@@ -1,3 +1,4 @@
+# 找到双调数组的最大值
 def find_max_in_bitonic_array(arr):
     start, end = 0, len(arr) - 1
 
@@ -8,6 +9,20 @@ def find_max_in_bitonic_array(arr):
             end = mid
         else:
             start = mid + 1
+
+    return arr[start]
+
+
+def find_max_in_bitonic_array(arr):
+    start, end = 0, len(arr) - 1
+
+    while start < end:
+        mid = int(start + (end - start) / 2)
+
+        if arr[mid] <= arr[mid + 1]:
+            start = mid + 1
+        elif arr[mid] > arr[mid + 1]:
+            end = mid
 
     return arr[start]
 

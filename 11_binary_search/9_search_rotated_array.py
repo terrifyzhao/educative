@@ -15,13 +15,34 @@ def search_rotated_array(arr, key):
             else:
                 start = mid + 1
 
-        # mid右边是升序的
         else:
             if arr[mid] < key <= arr[end]:
                 start = mid + 1
             else:
                 end = mid - 1
 
+    return -1
+
+
+def search_rotated_array2(arr, key):
+    start, end = 0, len(arr) - 1
+
+    while start <= end:
+        mid = start + (end - start) // 2
+
+        if arr[mid] == key:
+            return mid
+
+        if arr[start] <= arr[mid]:
+            if arr[start] <= key < arr[mid]:
+                end = mid - 1
+            else:
+                start = mid
+        else:
+            if arr[mid] < key <= arr[end]:
+                start = mid + 1
+            else:
+                end = mid
     return -1
 
 

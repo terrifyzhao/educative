@@ -1,3 +1,6 @@
+# 找key出现在arr中的范围
+
+
 def find_range(arr, key):
     result = [- 1, -1]
     result[0] = find(arr, key, True)
@@ -7,7 +10,7 @@ def find_range(arr, key):
 
 
 def find(arr, key, find_start):
-    start, end = 0, len(arr)-1
+    start, end = 0, len(arr) - 1
     key_index = -1
     while start <= end:
         mid = start + (end - start) // 2
@@ -22,6 +25,26 @@ def find(arr, key, find_start):
             else:
                 start = mid + 1
     return key_index
+
+
+def find(arr, key, find_start):
+    index = -1
+    start, end = 0, len(arr) - 1
+
+    while start <= end:
+        mid = start + (end - start) // 2
+
+        if key < arr[mid]:
+            end = mid - 1
+        elif key > arr[mid]:
+            start = mid + 1
+        else:
+            index = mid
+            if find_start:
+                end = mid - 1
+            else:
+                start = mid + 1
+    return index
 
 
 def main():

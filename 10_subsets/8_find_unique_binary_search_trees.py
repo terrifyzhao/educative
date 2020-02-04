@@ -38,7 +38,7 @@ def find_unique_trees_r(start, end):
 
 def find_unique_trees_r(start, end):
     res = []
-    if start > end:
+    if start>end:
         res.append(None)
         return res
 

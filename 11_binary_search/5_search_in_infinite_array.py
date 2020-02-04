@@ -1,6 +1,8 @@
 import math
 
 
+# 无限长度的数组中找到某个数
+
 class ArrayReader:
 
     def __init__(self, arr):
@@ -22,13 +24,12 @@ def search_in_infinite_array(reader, key):
 
     while start <= end:
         mid = start + (end - start) // 2
-
-        if key < reader.get(mid):
-            end = mid - 1
-        elif key > reader.get(mid):
-            start = mid + 1
-        else:
+        if reader.get(mid) == key:
             return mid
+        elif reader.get(mid) > key:
+            end = mid - 1
+        else:
+            start = mid + 1
 
     return -1
 
