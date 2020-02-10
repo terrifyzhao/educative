@@ -29,9 +29,9 @@ def rearrange_string(str):
 
 
 def main():
-    print("Rearranged string:  " + rearrange_string("aappp"))
-    print("Rearranged string:  " + rearrange_string("Programming"))
-    print("Rearranged string:  " + rearrange_string("aapa"))
+    print("Rearranged string:  " + rearrange_string("aapppp"))
+    # print("Rearranged string:  " + rearrange_string("Programming"))
+    # print("Rearranged string:  " + rearrange_string("aapa"))
 
 
 main()

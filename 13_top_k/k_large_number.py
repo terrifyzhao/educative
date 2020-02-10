@@ -3,17 +3,21 @@ from heapq import *
 
 class KthLargestNumberInStream:
     def __init__(self, nums, k):
-        self.k = k
-        self.res = []
-        for num in nums:
-            heappush(self.res, num)
+        self.min_heap = []
+        for i in range(k):
+            heappush(self.min_heap, nums[i])
+
+        for i in range(k, len(nums)):
+            if nums[i] > self.min_heap[0]:
+                heappop(self.min_heap)
+                heappush(self.min_heap, nums[i])
 
     def add(self, num):
-        heappush(self.res, num)
-        while len(self.res) > self.k:
-            heappop(self.res)
+        if num > self.min_heap[0]:
+            heappop(self.min_heap)
+            heappush(self.min_heap, num)
 
-        return self.res[0]
+        return self.min_heap[0]
 
 
 def main():
