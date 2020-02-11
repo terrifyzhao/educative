@@ -14,6 +14,7 @@ def find_smallest_range(lists):
 
     # heap中要和lists的个数一样多，才有计算range的意义
     while len(min_heapq) == len(lists):
+        # 一直pop，最后heap中剩余的是每个list中最大的三个值
         num, i, l = heappop(min_heapq)
 
         # 如果有更小的范围，就更新范围
@@ -21,7 +22,7 @@ def find_smallest_range(lists):
             start = num
             end = cur_max
 
-        # 当前list中还有数没有被添加到heap中过
+        # 当前list中还有数没有被添加到heap中过，三个数的最大值减去最小值，就是范围，最小值用堆存放，最大值一直统计即可
         if len(l) > i + 1:
             heappush(min_heapq, (l[i + 1], i + 1, l))
             cur_max = max(cur_max, l[i + 1])
@@ -30,6 +31,9 @@ def find_smallest_range(lists):
 
 
 def main():
+    print("Smallest range is: " +
+          str(find_smallest_range([[1, 5], [4, 8], [7, 9]])))
+
     print("Smallest range is: " +
           str(find_smallest_range([[1, 5, 8], [4, 12], [7, 8, 10]])))
 

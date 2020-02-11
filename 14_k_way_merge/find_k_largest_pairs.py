@@ -27,6 +27,20 @@ def find_k_largest_pairs(nums1, nums2, k):
     return res
 
 
+def find_k_largest_pairs(nums1, nums2, k):
+    res = []
+    min_heap = []
+    heappush(min_heap, (nums1[0], 0, nums1))
+    heappush(min_heap, (nums2[0], 0, nums2))
+
+    while min_heap and len(res) < k:
+        res.append([min_heap[0][0], min_heap[1][0]])
+        _, i, nums = heappop(min_heap)
+        if len(nums) > i + 1:
+            heappush(min_heap, (nums[i + 1], i + 1, nums))
+    return res
+
+
 def main():
     print("Pairs with largest sum are: " +
           str(find_k_largest_pairs([9, 8, 2], [6, 3, 1], 3)))

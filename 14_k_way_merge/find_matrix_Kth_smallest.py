@@ -1,17 +1,19 @@
-def find(matrix, mid):
+def find(matrix, mid, small, large):
     row = len(matrix) - 1
     col = 0
 
     count = 0
-    while row > 0 and col < len(matrix):
+    while row >= 0 and col < len(matrix):
         # 如果值小于mid，说明该列的值都比mid小，那么就有row+1个比mid小的数，并且应该把col+1
-        if matrix[row][col] < mid:
+        if matrix[row][col] <= mid:
+            small = max(small, matrix[row][col])
             col += 1
             count += row + 1
         else:
+            large = min(large, matrix[row][col])
             row -= 1
 
-    return count
+    return count, small, large
 
 
 def find_Kth_smallest(matrix, k):
@@ -19,16 +21,19 @@ def find_Kth_smallest(matrix, k):
 
     while start < end:
         mid = start + (end - start) // 2
+        small, large = matrix[0][0], matrix[-1][-1]
         # 找到比mid小的数有几个
-        count = find(matrix, mid)
+        count,small, large = find(matrix, mid, small, large)
 
+        if count == k:
+            return small
         # count小于k说明第k个值在mid的右侧
         if count < k:
-            start = mid + 1
+            start = large
         else:
-            end = mid
+            end = small
 
-    return end
+    return start
 
 
 def main():
