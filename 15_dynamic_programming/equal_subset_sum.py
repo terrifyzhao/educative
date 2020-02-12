@@ -36,13 +36,15 @@ def f(num):
     dp = [False for _ in range(s + 1)]
     dp[0] = True
 
-    if num[0] == s:
-        dp[num[0]] = True
+    # if num[0] == s:
+    #     dp[num[0]] = True
+
+    for i in range(s + 1):
+        dp[i] = num[0] == i
 
     for i in range(1, len(num)):
         for j in range(s, -1, -1):
             if not dp[j] and j >= num[i]:
-
                 dp[j] = dp[j - num[i]]
 
     return dp[-1]
