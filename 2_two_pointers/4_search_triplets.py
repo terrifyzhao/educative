@@ -1,10 +1,12 @@
+# 给定一个数组，找到和等于0的所有子集
+
 def search_triplets(arr):
     arr.sort()
     res = []
     for i in range(len(arr)):
         if i > 0 and arr[i] == arr[i - 1]:
             continue
-        search(-arr[i], arr, i + 1, res)
+        search(-arr[i], arr, i+1, res)
     return res
 
 

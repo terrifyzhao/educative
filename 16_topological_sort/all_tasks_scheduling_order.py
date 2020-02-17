@@ -27,7 +27,7 @@ def print_order(graph, in_degree, source, sortedOrder):
     if source:
         for vertex in source:
             sortedOrder.append(vertex)
-            next_source = deque(source)
+            next_source = list(source)
             next_source.remove(vertex)
             for child in graph[vertex]:
                 in_degree[child] -= 1
@@ -42,8 +42,6 @@ def print_order(graph, in_degree, source, sortedOrder):
 
     if len(sortedOrder) == len(in_degree):
         print(sortedOrder)
-    else:
-        print([])
 
 
 def main():

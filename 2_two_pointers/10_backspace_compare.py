@@ -25,7 +25,7 @@ def backspace_compare(str1, str2):
 def search_index(str, index):
     # 遇到字母和#都要-1，只有当上一轮是#这一轮是数字才break
     backspace_count = 0
-    while index:
+    while index >= 0:
         if str[index] == '#':
             backspace_count += 1
         elif backspace_count > 0:
@@ -61,7 +61,7 @@ def backspace_compare2(str1, str2):
 
 def search_index2(str, index):
     count = 0
-    while index:
+    while index >= 0:
         if str[index] == '#':
             count += 1
         elif count > 0:

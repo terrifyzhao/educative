@@ -1,3 +1,5 @@
+# 对只包含0 1 2 的数组排序
+
 def dutch_flag_sort(arr):
     start = 0
     end = len(arr) - 1

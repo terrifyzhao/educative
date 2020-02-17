@@ -1,3 +1,5 @@
+# 给定一个排好序的数组，返回其平方后的结果
+
 def make_squares(arr):
     length = len(arr)
     left = 0

@@ -73,8 +73,8 @@ def reorder2(head):
         tail.next = head
         tail = tmp
 
-    if head is not None:
-        head.next = None
+    # if head is not None:
+    #     head.next = None
 
 
 def main():

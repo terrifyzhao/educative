@@ -1,7 +1,7 @@
 import math
 
 
-# 给定一个数组，找到和最接近target_sum的差值
+# 给定一个数组，找到和最接近target_sum的和
 
 def triplet_sum_close_to_target(arr, target_sum):
     arr.sort()
@@ -40,7 +40,7 @@ def triplet_sum_close_to_target2(arr, target_sum):
         while start < end:
             diff = target_sum - arr[start] - arr[end] - arr[i]
             if diff == 0:
-                return 0
+                return target_sum
             elif diff > 0:
                 start += 1
             elif diff < 0:

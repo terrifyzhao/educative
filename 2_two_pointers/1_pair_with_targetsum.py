@@ -1,4 +1,4 @@
-# 给定一个数组，找到相加等于sum的数的下标
+# 给定一个排好序数组，找到相加等于sum的数的下标
 
 
 def pair_with_targetsum(arr, target_sum):
