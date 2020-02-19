@@ -31,7 +31,7 @@ def find_first_missing_positive2(nums):
     for i in range(len(nums)):
         if nums[i] != i + 1:
             return i + 1
-    return len(nums + 1)
+    return len(nums)+1
 
 
 def main():

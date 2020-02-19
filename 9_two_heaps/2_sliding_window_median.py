@@ -49,6 +49,7 @@ class SlidingWindowMedian:
         if idx < len(heap):
             heapq._siftup(heap, idx)
             heapq._siftdown(heap, 0, idx)
+            # 把list转成堆
             # heapq.heapify(heap)
 
 

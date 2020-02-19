@@ -63,12 +63,16 @@ def find_next_interval2(intervals):
 
 
 def main():
-    result = find_next_interval(
+    result = find_next_interval2(
         [Interval(2, 3), Interval(3, 4), Interval(5, 6)])
     print("Next interval indices are: " + str(result))
 
-    result = find_next_interval(
+    result = find_next_interval2(
         [Interval(3, 4), Interval(1, 5), Interval(4, 6)])
+    print("Next interval indices are: " + str(result))
+
+    result = find_next_interval2(
+        [Interval(3, 4), Interval(2, 4), Interval(4, 6), Interval(7, 9)])
     print("Next interval indices are: " + str(result))
 
 
