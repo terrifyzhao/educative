@@ -8,9 +8,9 @@ def find_permutations(nums):
     permutation = deque()
     permutation.append([])
     for num in nums:
-
+        n = len(permutation)
         # 这一层的遍历是遍历所有的permutations
-        while permutation:
+        for _ in range(n):
             old_permutation = permutation.popleft()
             # 这一层是遍历所有的位置
             # 创建一个新的permutation，在每个位置都插入num
@@ -24,32 +24,30 @@ def find_permutations(nums):
     return result
 
 
-def find_permutations(nums):
+def find_permutations2(nums):
     n = len(nums)
     res = []
-    permutations = deque()
-    permutations.append([])
+    q = deque()
+    q.append([])
 
-    for num in nums:
+    for i in range(n):
 
-        for _ in range(len(permutations)):
+        for _ in range(len(q)):
+            old_per = q.popleft()
 
-            old_permutation = permutations.popleft()
-
-            for j in range(len(old_permutation) + 1):
-                permutation = list(old_permutation)
-                permutation.insert(j, num)
-
-                if len(permutation) == n:
-                    res.append(permutation)
+            for j in range(len(old_per) + 1):
+                per = list(old_per)
+                per.insert(j, nums[i])
+                if len(per) == n:
+                    res.append(per)
                 else:
-                    permutations.append(permutation)
-
+                    q.append(per)
     return res
 
 
 def main():
     print("Here are all the permutations: " + str(find_permutations([1, 3, 5])))
+    print("Here are all the permutations: " + str(find_permutations2([1, 3, 5])))
 
 
 main()

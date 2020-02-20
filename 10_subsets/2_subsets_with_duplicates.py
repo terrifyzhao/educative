@@ -25,14 +25,17 @@ def find_subsets(nums):
 def find_subsets(nums):
     res = []
     res.append([])
-    start, end = 0, 0
-    for j in range(len(nums)):
 
-        if j > 0 and nums[j] == nums[j - 1]:
+    end = 0
+    n = len(nums)
+    for i in range(n):
+        start = 0
+        if i > 0 and nums[i] == nums[i - 1]:
             start = end + 1
-        end = len(nums) - 1
-        for i in range(start, end+1):
-            tmp = list(res[i])
+        end = len(res) - 1
+
+        for j in range(start, end + 1):
+            tmp = list(res[j])
             tmp.append(nums[i])
             res.append(tmp)
     return res

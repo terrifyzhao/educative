@@ -1,4 +1,4 @@
-# 字母改成大小写的所有平列组合情况
+# 字母改成大小写的所有排列组合情况
 
 def find_letter_case_string_permutations(str):
     permutations = []

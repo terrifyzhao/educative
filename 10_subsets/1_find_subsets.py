@@ -19,13 +19,12 @@ def find_subsets(nums):
     res.append([])
 
     for num in nums:
-
-        for i in range(len(res)):
+        n = len(res)
+        for i in range(n):
             tmp = list(res[i])
             tmp.append(num)
             res.append(tmp)
     return res
-
 
 def main():
     print("Here is the list of subsets: " + str(find_subsets([1, 3])))
