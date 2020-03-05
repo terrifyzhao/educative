@@ -1,4 +1,4 @@
-# 给定一个数组，找到和小于target的情况的个数
+# 给定一个数组，找到和小于target的三元组情况的个数
 
 def triplet_with_smaller_sum(arr, target):
     arr.sort()

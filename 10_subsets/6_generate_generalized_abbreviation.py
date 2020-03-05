@@ -1,6 +1,10 @@
 from collections import deque
 
 
+# 输出一个字符串的所有缩写
+# Input: "BAT"
+# Output: "BAT", "BA1", "B1T", "B2", "1AT", "1A1", "2T", "3"
+
 class AbbreviatedWord:
 
     def __init__(self, str, start, count):

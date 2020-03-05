@@ -1,3 +1,5 @@
+# 搜索旋转数组
+
 def search_rotated_array(arr, key):
     start, end = 0, len(arr) - 1
 

@@ -1,6 +1,8 @@
 from heapq import *
 
 
+# 找中位数
+
 class MedianOfAStream:
     max_heap = []
     min_heap = []

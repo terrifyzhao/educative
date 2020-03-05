@@ -27,7 +27,7 @@ def non_repeat_substring2(str):
         if s in dic:
             start = max(start, dic[s] + 1)
         dic[s] = end
-        max_len = max(max_len, end - start + 1)
+        max_len = max(end - start + 1, max_len)
     return max_len
 
 

@@ -2,6 +2,8 @@ from __future__ import print_function
 from collections import deque
 
 
+# 把每一层的节点连接在一起
+
 class TreeNode:
     def __init__(self, val):
         self.val = val

@@ -2,6 +2,9 @@ from heapq import *
 import heapq
 
 
+# 找到某个窗口的中位数
+
+
 class SlidingWindowMedian:
     def __init__(self):
         self.max_heap = []

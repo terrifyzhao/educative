@@ -16,8 +16,8 @@ def find_subarrays(arr, target):
 
         tmp_res = []
         # 要倒着遍历才不会重复，不信随便找个例子看下
-        for i in range(start, end+1):
-        # for i in range(end, start-1, -1):
+        # for i in range(start, end+1):
+        for i in range(end, start - 1, -1):
             tmp_res.append(arr[i])
             # 这里一定要转list，变成一个新的对象，不然会改变之前append进去的值
             res.append(list(tmp_res))

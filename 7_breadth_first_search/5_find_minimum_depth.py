@@ -1,6 +1,7 @@
 from collections import deque
 
 
+# 数的最小深度
 class TreeNode:
     def __init__(self, val):
         self.val = val
@@ -32,29 +33,10 @@ def find_minimum_depth(root):
     return depth
 
 
-def find_minimum_depth(root):
+def depth(root):
     if not root:
         return 0
-
-    min_length = 0
-    queue = deque()
-    queue.append(root)
-
-    while queue:
-        queue_size = len(queue)
-        min_length+=1
-        for _ in range(queue_size):
-            node = queue.popleft()
-
-            if not node.left and node.right:
-                return min_length
-
-            if node.left:
-                queue.append(node.left)
-            if node.right:
-                queue.append(node.right)
-    return min_length
-
+    return min(depth(root.left), depth(root.right)) + 1
 
 
 def main():
@@ -63,10 +45,10 @@ def main():
     root.right = TreeNode(1)
     root.right.left = TreeNode(10)
     root.right.right = TreeNode(5)
-    print("Tree Minimum Depth: " + str(find_minimum_depth(root)))
+    print("Tree Minimum Depth: " + str(depth(root)))
     root.left.left = TreeNode(9)
     root.right.left.left = TreeNode(11)
-    print("Tree Minimum Depth: " + str(find_minimum_depth(root)))
+    print("Tree Minimum Depth: " + str(depth(root)))
 
 
 main()

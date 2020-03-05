@@ -16,8 +16,7 @@ def find_subsets(nums):
         for i in range(start, end + 1):
             subset = list(subsets[i])
             subset.append(nums[j])
-            if subset not in subsets:
-                subsets.append(subset)
+            subsets.append(subset)
 
     return subsets
 

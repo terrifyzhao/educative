@@ -1,3 +1,5 @@
+# 计算数组旋转了几次
+
 def count_rotations(arr):
     start, end = 0, len(arr) - 1
     while start < end:

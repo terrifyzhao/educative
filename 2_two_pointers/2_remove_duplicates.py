@@ -14,14 +14,13 @@ def remove_duplicates(arr):
 
 
 def remove_duplicates2(arr):
-    slow, fast = 1, 1
-
-    while fast < len(arr):
-        if arr[slow - 1] != arr[fast]:
-            arr[slow] = arr[fast]
-            slow += 1
-        fast += 1
-    return slow
+    left, right = 1, 1
+    while right < len(arr):
+        if arr[left - 1] != arr[right]:
+            arr[left] = arr[right]
+            left += 1
+        right += 1
+    return left
 
 
 def main():

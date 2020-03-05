@@ -25,23 +25,22 @@ def find_permutations(nums):
 
 
 def find_permutations2(nums):
-    n = len(nums)
+    num_len = len(nums)
     res = []
-    q = deque()
-    q.append([])
-
-    for i in range(n):
-
-        for _ in range(len(q)):
-            old_per = q.popleft()
-
-            for j in range(len(old_per) + 1):
-                per = list(old_per)
-                per.insert(j, nums[i])
-                if len(per) == n:
-                    res.append(per)
+    queue = deque()
+    queue.append([])
+    for n in nums:
+        l = len(queue)
+        for i in range(l):
+            tmp = queue.popleft()
+            for j in range(len(tmp)+1):
+                new_tmp = list(tmp)
+                new_tmp.insert(j, n)
+                if len(new_tmp) == num_len:
+                    res.append(new_tmp)
                 else:
-                    q.append(per)
+                    queue.append(new_tmp)
+
     return res
 
 

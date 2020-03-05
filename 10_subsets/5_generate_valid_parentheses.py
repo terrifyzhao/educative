@@ -1,6 +1,9 @@
 from collections import deque
 
 
+# n对括号，输出所有正确组合方式
+
+
 class ParenthesesString:
     def __init__(self, str, openCount, closeCount):
         self.str = str

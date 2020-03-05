@@ -1,6 +1,8 @@
 import math
 
 
+# 找到和最大的路径
+
 class TreeNode:
     def __init__(self, val, left=None, right=None):
         self.val = val
@@ -14,17 +16,6 @@ class MaxPath:
 
         self.find(root)
         return self.max_sum
-
-    # def find(self, root):
-    #     if not root:
-    #         return 0
-    #
-    #     left_sum = self.find(root.left)
-    #     right_sum = self.find(root.right)
-    #
-    #     self.max_sum = max(max(left_sum, 0) + max(right_sum, 0) + root.val, self.max_sum)
-    #
-    #     return max(left_sum, right_sum) + root.val
 
     def find(self, root):
         if not root:
